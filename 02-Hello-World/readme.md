@@ -15,13 +15,13 @@ docker build -t hello-node:v1 .
 
 ### Launch Image [http://localhost:8090](http://localhost:8090)
 ```bash
-docker run --rm --name hello-node-v1 -p 8090:8080 -d hello-node:v1
+docker run --rm --name hello-node -p 8090:8080 -d hello-node:v1
 curl http://localhost:8090
 ```
 
 ### Stop Image
 ```bash
-docker stop hello-node-v1
+docker stop hello-node
 ```
 
 ## Spring Boot
@@ -37,11 +37,11 @@ docker build -t hello-spring:v1 .
 
 ### Launch Image [http://localhost:8091](http://localhost:8091)
 ```bash
-docker run --rm --name hello-spring-v1 -p 8091:8080 -d hello-spring:v1
+docker run --rm --name hello-spring -p 8091:8080 -d hello-spring:v1
 curl http://localhost:8091
 ```
 
 ### Stop Image
 ```bash
-docker stop hello-spring-v1
+docker stop hello-spring
 ```
