@@ -16,27 +16,27 @@ kubectl proxy
 
 ### Launch Image [http://localhost:8090](http://localhost:8090)
 ```bash
-kubectl run hello-node-v1 -l "tag=hello-node-v1" --image=hello-node:v1 --port=8080 --image-pull-policy=Never
-kubectl expose deployments hello-node-v1 --port 8090 --target-port=8080 --type LoadBalancer -l "tag=hello-node-v1"
+kubectl run hello-node -l "tag=hello-node" --image=hello-node:v1 --port=8080 --image-pull-policy=Never
+kubectl expose deployments hello-node --port 8090 --target-port=8080 --type LoadBalancer -l "tag=hello-node"
 curl http://localhost:8090
 ```
 
 ### Stop Image
 ```bash
-kubectl delete pod,service,deployment -l "tag=hello-node-v1"
+kubectl delete pod,service,deployment -l "tag=hello-node"
 ```
 
 ### Launch Image [http://localhost:8091](http://localhost:8091)
 
 ### Launch Image
 ```bash
-kubectl run hello-spring-v1 -l "tag=hello-spring-v1" --image=hello-spring:v1 --port=8080 --image-pull-policy=Never
-kubectl expose deployments hello-spring-v1 --port 8091 --target-port=8080 --type LoadBalancer -l "tag=hello-spring-v1"
+kubectl run hello-spring -l "tag=hello-spring" --image=hello-spring:v1 --port=8080 --image-pull-policy=Never
+kubectl expose deployments hello-spring --port 8091 --target-port=8080 --type LoadBalancer -l "tag=hello-spring"
 curl http://localhost:8091
 ```
 
 ### Stop Image
 ```bash
-kubectl delete pod,service,deployment -l "tag=hello-spring-v1"
+kubectl delete pod,service,deployment -l "tag=hello-spring"
 ```
 
