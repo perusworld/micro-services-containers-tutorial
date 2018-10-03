@@ -2,6 +2,7 @@
 
  * Scale
  * Monitor
+ * Logging
  * Update
  * Rollback
 
@@ -26,7 +27,7 @@ kubectl apply -f hello-spring-v1.yaml
 ```
 
 ```bash
-loadtest -c 10 -n 10000 http://localhost:8090
+loadtest -c 10 -n 10000 http://localhost:8091
 ```
 
 ```bash
@@ -34,7 +35,10 @@ kubectl delete -f hello-spring-v1.yaml
 ```
 
 ## Monitor
+--TBA--
 
+## Logging
+--TBA--
 
 ## Update
 
