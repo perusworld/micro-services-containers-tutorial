@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-spring
+  labels:
+    tag: hello-spring
+spec:
+  ports:
+    - port: 8091
+      targetPort: 8080
+  selector:
+    tag: hello-spring
+    tier: frontend
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-spring
+  labels:
+    tag: hello-spring
+spec:
+  selector:
+    matchLabels:
+      tag: hello-spring
+      tier: frontend
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        tag: hello-spring
+        tier: frontend
+    spec:
+      containers:
+      - image: hello-spring:v2
+        imagePullPolicy: Never
+        name: hello-spring
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 200m
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hello-spring
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hello-spring
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
+
