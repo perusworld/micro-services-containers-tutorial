@@ -1,0 +1,182 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-backend
+  labels:
+    tag: hello-world
+spec:
+  ports:
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: hello-backend
+    tag: hello-world
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hello-backend
+  labels:
+    tag: hello-world
+spec:
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: hello-backend
+        tag: hello-world
+    spec:
+      containers:
+      - image: hello-backend:v1
+        imagePullPolicy: Never
+        name: hello-backend
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 200m
+      restartPolicy: Always
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hello-backend
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hello-backend
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    tag: hello-world
+  name: hello-rest
+spec:
+  ports:
+  - name: "8091"
+    port: 8091
+    targetPort: 8080
+  selector:
+    app: hello-rest
+    tag: hello-world
+  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    tag: hello-world
+  name: hello-rest
+spec:
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: hello-rest
+        tag: hello-world
+    spec:
+      containers:
+      - env:
+        - name: SENTIMENT_API_URL
+          value: http://hello-backend:8080
+        image: hello-rest:v1
+        imagePullPolicy: Never
+        name: hello-rest
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 200m
+      restartPolicy: Always
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hello-rest
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hello-rest
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    tag: hello-world
+  name: hello-frontend
+spec:
+  ports:
+  - name: "8090"
+    port: 8090
+    targetPort: 80
+  selector:
+    app: hello-frontend
+    tag: hello-world
+  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    tag: hello-world
+  name: hello-frontend
+spec:
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: hello-frontend
+        tag: hello-world
+    spec:
+      containers:
+      - env:
+        image: hello-frontend:v1
+        imagePullPolicy: Never
+        name: hello-frontend
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 200m
+      restartPolicy: Always
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hello-frontend
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hello-frontend
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
