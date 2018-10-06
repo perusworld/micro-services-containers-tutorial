@@ -108,3 +108,20 @@
     docker stop hello-frontend
     ```
 
+## Orchestration
+
+### Docker Compose
+
+* Build
+    ```bash
+    docker-compose -f docker-compose.yml build
+    ```
+* Launch [http://localhost:8090](http://localhost:8090)
+    ```bash
+    docker-compose -f docker-compose.yml up -d
+    ```
+* Stop
+    ```bash
+    docker-compose -f docker-compose.yml stop
+    ```
+
