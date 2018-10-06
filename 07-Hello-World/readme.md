@@ -111,7 +111,6 @@
 ## Orchestration
 
 ### Docker Compose
-
 * Build
     ```bash
     docker-compose -f docker-compose.yml build
@@ -123,5 +122,15 @@
 * Stop
     ```bash
     docker-compose -f docker-compose.yml stop
+    ```
+
+### Kubernetes
+* Launch [http://localhost:8090](http://localhost:8090)
+    ```bash
+    kubectl apply -f hello-world.yaml
+    ```
+* Stop
+    ```bash
+    kubectl delete -f hello-world.yaml
     ```
 
