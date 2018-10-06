@@ -6,5 +6,6 @@
  * [Hello World - Orchestration](./04-Hello-World) 
  * [Scaling](./05-Scaling) 
  * [Micro Services](./06-Micro-Services) 
+ * [Hello World - Micro Services](./07-Hello-World) 
 
  
