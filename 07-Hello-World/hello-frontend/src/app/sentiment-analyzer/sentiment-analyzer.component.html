@@ -1,0 +1,13 @@
+<form>
+  <div class="form-group" *ngIf="response.classification">
+    <h3>Classification <span class="badge badge-{{response.classification | classification:'class'}}">{{response.classification
+        | classification}}</span></h3>
+    <h3>Polarity <span class="badge badge-{{response.classification | classification:'class'}}">{{response.polarity}}</span></h3>
+    <h3>Subjectivity <span class="badge badge-info">{{response.subjectivity}}</span></h3>
+  </div>
+  <div class="form-group">
+    <label for="textToAnalyze">Text to Analyze</label>
+    <input class="form-control" id="textToAnalyze" name="textToAnalyze" [ngbTypeahead]="search" [(ngModel)]="sentiment.text">
+  </div>
+  <button type="button" (click)="analyze(sentiment)" class="btn btn-primary">Analyze</button>
+</form>

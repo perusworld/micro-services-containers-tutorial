@@ -1,0 +1,16 @@
+<div class="jumbotron">
+  <h1 class="display-4">{{title}}</h1>
+  <p class="lead">Demo front end</p>
+</div>
+
+<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+  <ngb-panel>
+    <ng-template ngbPanelTitle>
+      <span>&#9733; <b>Sentiment Analyzer</b> &#9733;</span>
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <app-sentiment-analyzer></app-sentiment-analyzer>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
+
