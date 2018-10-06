@@ -4,8 +4,6 @@ services:
     container_name: hello-backend
     build: 
       context: ./hello-backend
-    ports:
-      - "8092:8080"
     networks:
       - backend      
   hello-rest:
