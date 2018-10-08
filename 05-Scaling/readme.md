@@ -44,6 +44,7 @@ cd ..
 kubectl apply -f hello-node-v2.yaml --record
 kubectl rollout status deployment hello-node
 
+minikube service hello-node
 curl http://localhost:8090
 ```
 
@@ -79,6 +80,7 @@ cd ..
 kubectl apply -f hello-spring-v2.yaml --record
 kubectl rollout status deployment hello-spring
 
+minikube service hello-spring
 curl http://localhost:8091
 ```
 
