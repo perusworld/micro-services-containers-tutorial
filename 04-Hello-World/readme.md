@@ -18,6 +18,9 @@ kubectl proxy
 ```bash
 kubectl run hello-node -l "tag=hello-node" --image=hello-node:v1 --port=8080 --image-pull-policy=Never
 kubectl expose deployments hello-node --port 8090 --target-port=8080 --type LoadBalancer -l "tag=hello-node"
+kubectl get services
+
+minikube service hello-node
 curl http://localhost:8090
 ```
 
@@ -32,6 +35,9 @@ kubectl delete pod,service,deployment -l "tag=hello-node"
 ```bash
 kubectl run hello-spring -l "tag=hello-spring" --image=hello-spring:v1 --port=8080 --image-pull-policy=Never
 kubectl expose deployments hello-spring --port 8091 --target-port=8080 --type LoadBalancer -l "tag=hello-spring"
+kubectl get services
+
+minikube service hello-spring
 curl http://localhost:8091
 ```
 
