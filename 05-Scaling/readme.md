@@ -17,10 +17,6 @@ kubectl apply -f hello-node-v1.yaml
 loadtest -c 10 -n 10000 http://localhost:8090
 ```
 
-```bash
-kubectl delete -f hello-node-v1.yaml
-```
-
 ### Spring [http://localhost:8091](http://localhost:8091)
 ```bash
 kubectl apply -f hello-spring-v1.yaml
@@ -29,16 +25,6 @@ kubectl apply -f hello-spring-v1.yaml
 ```bash
 loadtest -c 10 -n 10000 http://localhost:8091
 ```
-
-```bash
-kubectl delete -f hello-spring-v1.yaml
-```
-
-## Monitor
---TBA--
-
-## Logging
---TBA--
 
 ## Update
 
@@ -50,6 +36,7 @@ cd hello-node-v2
 #### Build Image
 ```bash
 docker build -t hello-node:v2 .
+cd ..
 ```
 
 #### Update [http://localhost:8090](http://localhost:8090)
@@ -84,6 +71,7 @@ cd hello-spring-v2
 ```bash
 mvn clean package
 docker build -t hello-spring:v2 .
+cd ..
 ```
 
 #### Update [http://localhost:8091](http://localhost:8091)
@@ -108,3 +96,10 @@ kubectl rollout history deployment hello-spring
 ```bash
 kubectl delete -f hello-spring-v2.yaml
 ```
+
+## Monitor
+--TBA--
+
+## Logging
+--TBA--
+
