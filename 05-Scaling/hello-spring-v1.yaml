@@ -24,12 +24,6 @@ spec:
     matchLabels:
       tag: hello-spring
       tier: frontend
-  minReadySeconds: 15
-  strategy:
-    type: RollingUpdate
-    rollingUpdate: 
-      maxUnavailable: 1
-      maxSurge: 1
   template:
     metadata:
       labels:
