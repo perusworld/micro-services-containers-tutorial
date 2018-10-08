@@ -1,12 +1,5 @@
 # Containers
 
-### java
-![Maven](Maven.png)
-
-### nodejs
-![npm](NPM.png)
-
-
 ## Bare Metal
  * users and roles
  * prerequisites installed (jre/node/services/db etc)
@@ -33,3 +26,10 @@ Source - [containers-and-virtual-machines](https://docs.docker.com/get-started/#
  * Self contained
  * Isolated
  * Immutable
+
+### java
+![Maven](Maven.png)
+
+### nodejs
+![npm](NPM.png)
+
