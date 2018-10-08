@@ -88,7 +88,7 @@
     cd hello-frontend
     npm install
     ```
-* Run
+* Run [http://localhost:4200](http://localhost:4200)
     ```bash
     npm start
     ```
