@@ -17,6 +17,9 @@ eval $(minikube docker-env)
 minikube docker-env | Invoke-Expression
 ```
 
+### Rebuild Images 
+After the above command is run, rebuild the images from  [Hello World - Containers](../02-Hello-World) 
+
 ### [Dashboard UI](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/)
 ```bash
 kubectl proxy
