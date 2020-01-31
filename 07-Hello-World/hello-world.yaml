@@ -13,13 +13,17 @@ spec:
     app: hello-backend
     tag: hello-world
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-backend
   labels:
     tag: hello-world
 spec:
+  selector:
+    matchLabels:
+      app: hello-backend
+      tag: hello-world
   minReadySeconds: 15
   strategy:
     type: RollingUpdate
@@ -73,13 +77,17 @@ spec:
     tag: hello-world
   type: LoadBalancer
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     tag: hello-world
   name: hello-rest
 spec:
+  selector:
+    matchLabels:
+      app: hello-rest
+      tag: hello-world
   minReadySeconds: 15
   strategy:
     type: RollingUpdate
@@ -136,13 +144,17 @@ spec:
     tag: hello-world
   type: LoadBalancer
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     tag: hello-world
   name: hello-frontend
 spec:
+  selector:
+    matchLabels:
+      app: hello-frontend
+      tag: hello-world
   minReadySeconds: 15
   strategy:
     type: RollingUpdate
