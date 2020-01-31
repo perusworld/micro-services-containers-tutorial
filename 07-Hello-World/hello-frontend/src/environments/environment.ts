@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL: 'http://localhost:8091'
+  baseURL: 'http://be.local.minikube.com'
 };
 
 /*
