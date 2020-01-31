@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL: 'http://be.local.minikube.com'
+  baseURL: 'http://localhost:8091'//when using ingress 'http://be.local.minikube.com'
 };
 
 /*
